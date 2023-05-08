@@ -1,0 +1,57 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Inicio de sesion";
+}
+
+
+<div class="row  w-100 d-flex justify-content-center align-items-center p-5">
+    <div class="col-md-6 ">
+        <section class="w-100">
+            <form id="account" method="post"  class="bordered rounded-3 shadow p-5 pt-1">
+                <h1 class="text-center mt-1 mb-2">@ViewData["Title"]</h1>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-floating mt-5 mb-3">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                    <label asp-for="Input.Email" class="form-label">Correo</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating my-2">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                    <label asp-for="Input.Password" class="form-label">Contrseña</label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div>
+                    <div class="checkbox my-2">
+                        <label asp-for="Input.RememberMe" class="form-label">
+                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                               Recuerdame
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Iniciar sesion</button>
+                </div>
+               <!--  <div
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Registrarme </a>
+                    </p>
+                    
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    
+                    <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                    
+                </div> -->
+            </form>
+        </section>
+    </div>
+    </div>
+    
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

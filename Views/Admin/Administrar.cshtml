@@ -1,0 +1,72 @@
+﻿@model gestionServiciosVirtuales.Models.Servicio
+
+@{
+    ViewData["Title"] = "Administrar";
+
+    List<SelectListItem> estados = (List<SelectListItem>)ViewData["estados"];
+}
+
+<h1>Administrar</h1>
+<div class="row d-flex justify-content-center align-content-center ">
+<div class="bg-info w-50 shadow-sm border p-3 rounded-3">
+    <h4>Servicio</h4>
+    
+    <dl class="row">
+        <dt class = "col-sm-2">
+        Titulo
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ServicioTitulo)
+        </dd>
+        <dt class = "col-sm-2">
+           Descripcion
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ServicioDescripcion)
+        </dd>
+        <dt class = "col-sm-2">
+         Fecha Creacion
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ServicioFechaCreacion)
+        </dd>
+        <dt class = "col-sm-2">
+           Estado
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ServicioEstadoNavigation.ServicioEstadoDescripcion)
+        </dd>
+      
+    </dl>
+
+
+
+    
+   <div class="">
+
+       @if(Model.ServicioEstado == 1){
+             <a class="btn btn-success" asp-action="CambiarEstado" asp-route-id="@Model.ServicioId" >Cambiar estado a <strong>en revision</strong></a>
+       }
+
+        @if (Model.ServicioEstado == 3)
+        {
+            <a class="btn btn-success" asp-action="CambiarEstado" asp-route-id="@Model.ServicioId" >Cambiar estado a <strong>Realizado</strong></a>
+        }
+
+        @if (Model.ServicioEstado == 5)
+        {
+            <h4 class="text-success">Realizado</h4>
+        }
+</div>
+
+
+
+
+
+
+
+
+    </div>
+<div>
+</div>
+</div>

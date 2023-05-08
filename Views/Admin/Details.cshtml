@@ -1,0 +1,85 @@
+﻿@model gestionServiciosVirtuales.Models.Servicio
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div class="d-flex justify-content-center  align-items-center flex-column">
+
+    <h2>Detalle</h2>
+    
+    <div class="bg-light w-50 p-3 rounded-2 shadow-sm">
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Servicio
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ServicioTitulo)
+        </dd>
+        <dt class = "col-sm-2">
+            Descripcion
+        </dt>
+        <dd class = "col-sm-10  ">
+            @Html.DisplayFor(model => model.ServicioDescripcion)
+        </dd>
+        <dt class = "col-sm-2 ">
+           Fecha Creacion     
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ServicioFechaCreacion)
+        </dd>
+        <dt class = "col-sm-2">
+            Estado
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ServicioEstadoNavigation.ServicioEstadoDescripcion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Usuario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Usuario.Id)
+        </dd>
+
+
+
+        <dt class = "col-sm-2">
+           Nombre
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.Solicitante.Nombre
+        </dd>
+
+        
+        <dt class = "col-sm-2">
+           Matricula
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.Solicitante.Matricula
+        </dd>
+
+        
+        <dt class = "col-sm-2">
+            Facultad
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.Solicitante.Facultad
+        </dd>
+
+        
+        <dt class = "col-sm-2">
+           Carrera
+        </dt>
+        <dd class = "col-sm-10">
+            @ViewBag.Solicitante.Carrera
+        </dd>
+    </dl>
+
+    </div>
+</div>
+<div>
+   
+    <a asp-action="Index">Atras</a>
+</div>

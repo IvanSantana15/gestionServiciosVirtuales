@@ -1,0 +1,49 @@
+﻿@model gestionServiciosVirtuales.Models.Servicio
+
+@{
+    ViewData["Title"] = "Detalle";
+}
+
+
+<div class="">
+    <h4>Servicio</h4>
+    <hr />
+
+    <div class="row d-flex justify-content-center align-content-center">
+    <dl class="row w-50 border p-3 shadow-sm ">
+        <dt class = "col-sm-2">
+          Titulo
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ServicioTitulo)
+        </dd>
+        <dt class = "col-sm-2">
+            Descripcion
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ServicioDescripcion)
+        </dd>
+        <dt class = "col-sm-2">
+            Fecha Creacion
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ServicioFechaCreacion)
+        </dd>
+        <dt class = "col-sm-2">
+           Estado
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ServicioEstadoNavigation.ServicioEstadoDescripcion)
+        </dd>
+       
+    </dl>
+
+<div class="my-1">
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.ServicioId">Editar</a> |
+    <a asp-action="Index">Ir atras</a>
+</div>
+
+
+    </div>
+</div>
+

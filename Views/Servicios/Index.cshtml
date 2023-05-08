@@ -1,0 +1,73 @@
+﻿@model IEnumerable<gestionServiciosVirtuales.Models.Servicio>
+
+@{
+    ViewData["Title"] = "solicitar servicio";
+}
+
+
+<div class="d-flex justify-content-between" >
+    <h3>Mis Servicios</h3>
+
+    <p>
+     <a class="btn btn-success" asp-action="Create">Solicitar un servicio</a>
+    </p>
+</div>
+
+
+
+
+ @if (Model.Count().Equals(0))
+{
+    <div class="row mt-3">
+           <div class="w-100 text-center">
+                 <h5>No tiene servicios solicitados</h5>
+         </div>
+    </div>
+    
+}else
+{
+<div class="w-100 d-flex justify-content-center align-content-center">
+<table class="table table-striped shadow-sm table-hover w-75">
+    <thead>
+        <tr>
+            <th>
+                Servicio
+            </th>
+           
+            <th>
+               FechaCreacion
+            </th>
+            <th>
+               Estado
+            </th>
+           
+            <th> Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                @Html.DisplayFor(modelItem => item.ServicioTitulo)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.ServicioFechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServicioEstadoNavigation.ServicioEstadoDescripcion)
+            </td>
+
+            <td>
+                <a  class ="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.ServicioId">Editar</a> |
+                <a class ="btn btn-sm btn-primary" asp-action="Details" asp-route-id="@item.ServicioId">Detalle</a> |
+                <a  class ="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.ServicioId">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+}

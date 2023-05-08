@@ -1,0 +1,129 @@
+﻿
+@model IEnumerable<gestionServiciosVirtuales.Models.Servicio>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+}
+
+<div class="container-fluid w-100" >
+
+<h1>Administracion</h1>
+
+<div class="row w-100 ">
+
+    <div class="col-md-2 ">
+        <div class="nav  my-2">
+            <ul class="list-group">
+                  <li class="list-group-item"><a asp-controller="admin" asp-action="VerPorTipoServicio"  class=" link link-underline-primary">ver por tipo de servicio</a></li>
+                  <li class="list-group-item"><a asp-controller="TipoServicios" class=" link link-underline-primary">ver servicios disponibles</a></li>
+                  <li class="list-group-item"><a class="link link-underline-primary " asp-controller="TipoServicios" asp-action="Create">Agregar un nuevo servicio</a></li>
+                
+            </ul>
+            
+             
+        </div>
+
+    </div>
+
+    <div class="col-md-10">
+
+    <div class="row w-100">
+    <div class="col border rounded bg-info text-center  py-4 m-3">
+        <a class="text-decoration-none" asp-action="Index" asp-route-id="0">
+        <h4 class="text-dark">Todos los Servicios</h4>
+        <span class="text-dark">@ViewBag.servicesCount</span>
+        </a>
+    </div>
+    <div class="col border rounded  bg-info text-center  py-4 m-3">
+        <a class="text-decoration-none" asp-action="Index" asp-route-id="1">
+        <h4 class="text-dark" > Servicios en revision </h4>
+        <span class="text-dark">@ViewBag.serviciosRevision</span>
+        </a>
+    </div>
+    <div class="col border rounded bg-info text-center py-4 m-3">
+        <a class="text-decoration-none" asp-action="Index" asp-route-id="2">
+        <h4 class="text-dark">Servicios realizados</h4>
+        <span class="text-dark">@ViewBag.serviciosRealizados</span>
+        </a>
+    </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+        <table class=" my-5 table table-success table-striped-columns">
+    <thead>
+        <tr>
+            <th>
+                Servicio
+            </th>
+            
+            <th>
+               Fecha Creacion
+            </th>
+            <th>
+               Estado
+            </th>
+            <th>
+                Usuario
+            </th>
+            <th> Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @if (Model.Count().Equals(0))
+{
+    <tr> 
+        <td></td>
+        
+        <td >
+            <div class="row mt-3">
+                <div class="w-100 text-end">
+                 <h5>Sin datos</h5>
+         </div>
+    </div>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    
+
+    </tr>
+    
+}else{
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServicioTitulo)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.ServicioFechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServicioEstadoNavigation.ServicioEstadoDescripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.Email)
+            </td>
+            <td>
+                <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.ServicioId">Detalle</a> |
+
+                 <a class="btn btn-sm btn-success" asp-action="Administrar" asp-route-id="@item.ServicioId">Administrar</a>
+
+                
+            </td>
+        </tr>
+}}
+    </tbody>
+</table>
+</div>
+    </div>
+
+    </div>
+
+</div>
+
+</div>

@@ -1,0 +1,55 @@
+﻿@model gestionServiciosVirtuales.Models.Solicitante
+@{
+    ViewData["Title"] = "SolicitanteInfo";
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.servicios;
+}
+
+<h2>Datos adicionales</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SolicitanteInfo" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Matricula" class="control-label"></label>
+                <input asp-for="Matricula" class="form-control" />
+                <span asp-validation-for="Matricula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tipoUsuario" class="control-label"> Rol</label>
+
+                    @Html.DropDownList("tipoUsuario",items,  new {@class="form-control"})
+                <span asp-validation-for="tipoUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Facultad" class="control-label"></label>
+                <input asp-for="Facultad" class="form-control" />
+                <span asp-validation-for="Facultad" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="Carrera" class="control-label"></label>
+                <input asp-for="Carrera" class="form-control" />
+                <span asp-validation-for="Carrera" class="text-danger"></span>
+            </div>
+            
+             <div class="form-group d-none ">
+                <label asp-for="UsuarioId" class="control-label"></label>
+                <input asp-for="UsuarioId" type="hidden" value="@ViewBag.userId" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Enviar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

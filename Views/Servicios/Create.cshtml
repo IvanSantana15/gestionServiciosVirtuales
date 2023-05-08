@@ -1,0 +1,49 @@
+﻿@model gestionServiciosVirtuales.Models.Servicio
+
+@{
+    ViewData["Title"] = "Solicitar servicio";
+    //  <input asp-for="ServicioTitulo" class="form-control" />
+
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.servicios;
+}
+
+
+
+<h4> Solicitar un servicio</h4>
+<hr />
+<div class="row d-flex justify-content-center align-content-center">
+    <div class="col-md-5">
+        <form asp-action="Create" class="shadow border rounded-3 p-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group my-2">
+                <label asp-for="ServicioTitulo" class="control-label">Servicio</label>
+              @Html.DropDownList("ServicioTitulo",items, "Selecione un servicio",new{ @class="form-control"})
+                <span asp-validation-for="ServicioTitulo" class="text-danger"></span>
+            </div>
+            <div class="form-group my-2">
+                <label asp-for="ServicioDescripcion" class="control-label">Descripcion</label>
+                <textarea   asp-for="ServicioDescripcion" class="form-control"></textarea>
+                <span asp-validation-for="ServicioDescripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group my-2 d-none ">
+                <label asp-for="ServicioEstado" class="control-label"></label>
+                <select asp-for="ServicioEstado" class ="form-control" asp-items="ViewBag.ServicioEstado"></select>
+            </div>
+            <div class="form-group my-2 d-none">
+                <label asp-for="UsuarioId" class="control-label"></label>
+                <input asp-for="UsuarioId"  class ="form-control" value="@ViewBag.UsuarioId"/>
+            </div>
+            <div class="form-group my-2">
+                <input type="submit" value="Enviar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver atras</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<gestionServiciosVirtuales.Models.TipoServicio>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Servicios Disponibles</h3>
+
+@if (User.IsInRole("Admin"))
+{
+    <div  class="w-100 text-end">
+        <p class="mt-0">
+            <a class=" btn btn-success" asp-action="Create">Agregar un nuevo servicio</a>
+        </p>
+    </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Servicio
+            </th>
+
+            <th>
+             Descripcion
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.servicioNombre)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.idTipoServicio">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.idTipoServicio">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+}else
+{
+<div class="container d-flex justify-content-center py-5">
+   
+        
+
+   <div class="accordion w-75" id="accordionFlushExample">
+       @foreach (var item in Model) {
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                     @Html.DisplayFor(modelItem => item.servicioNombre)
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                  </div>
+                </div>
+  </div>
+            }
+    </div>
+            
+
+</div>
+}
